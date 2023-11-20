@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/board.css"/>
+    </head>
+    <body>
+        <a href="/" id="btn">번역 페이지</a>
+        <br><br>
+    <div class="container">
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>번호</th>
+            <th>INPUT</th>
+            <th>TARGET</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(function (item,index){ %>
+            <tr>
+                <td>
+                <%= item.index %>
+                </td>
+                <td>
+                <%= item.input %>
+                </td>
+                <td>
+                <%= item.output %>
+                </td>
+            </tr>
+            <% })%>
+        </tbody>
+        </table>
+    </div>
+        <ul class="pager">
+            <%
+            var curSet = pasing.curSet
+            var endPage = pasing.endPage
+            var startPage = pasing.startPage
+            var totalSet = pasing.totalSet
+            var totalPage = pasing.totalPage
+            var page_list_size = pasing.page_list_size
+            var page_size = pasing.page_size
+            var curPage = pasing.curPage
+            %>
+
+
+            <% if (curSet > 1) { %>
+                <li value=<%= (startPage - 1) %> class="previous">
+                    <a href='/db/<%= (startPage - 1) %>'><</a>
+                </li>
+            <% } %>
+
+            <% for (var i = startPage; i <= endPage; i++) {
+                if (i > totalPage) { break; }
+
+                if (i == curPage) { %>
+                    <li value=<%= i %> class=''>
+                        <a href='/db/<%= i %>'>
+                            <%= i %>
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li value=<%= i %> class='active' >
+                        <a href='/db/<%= i %>'>
+                            <%= i %>
+                        </a>
+                    </li>
+                <% } %>  
+            <% } %>
+            <% if (curSet < totalSet) { %>
+                <li value=(endPage + 1) class="next">
+                    <a href='/db/<%= (endPage + 1) %>'>></a>
+                </li>
+            <% } %>
+        </ul>
+    </body>
+</html>

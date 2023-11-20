@@ -1,0 +1,49 @@
+version: '2.5'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:2.0
+    ports:
+      - '80:80'
+    networks:
+      - ws_was        
+    depends_on:
+      - node
+      - maria     
+  node:
+    container_name: Nodejs
+    image: node:2.0
+    secrets:
+      - node_secret
+    expose:
+      - '8080'
+    networks:
+      - ws_was   
+      - was_db
+    depends_on:
+      - maria 
+    command: "node app.js"
+    
+  maria:
+    image: maria:2.0
+    container_name: Maria
+    volumes:
+      - ./mysql:/var/lib/mysql
+    expose:
+      - '3306'
+    env_file:
+      - secrets_db.env
+    networks:
+      - was_db
+    command: ["--init-file", "/docker-entrypoint-initdb.d/init.sql"]    
+      
+networks:
+  ws_was:
+    driver: bridge
+  was_db:
+    driver: bridge
+        
+secrets:
+  node_secret:
+    file: secrets.json
