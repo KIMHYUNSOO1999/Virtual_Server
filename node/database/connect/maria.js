@@ -2,7 +2,8 @@ const maria= require('mysql2');
 const fs = require('fs');
 const path = require('path');
 
-const secretData = fs.readFileSync('/run/secrets/node_secret', 'utf8');
+//const secretData = fs.readFileSync('/run/secrets/node_secret', 'utf8');
+const secretData = fs.readFileSync('/var/secrets/secrets.json', 'utf8');
 const secrets = JSON.parse(secretData);
 
 const connection=maria.createConnection({

@@ -15,7 +15,9 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname+'/views/css/'));
 
 
-const secretData = fs.readFileSync('/run/secrets/node_secret', 'utf8');
+//const secretData = fs.readFileSync('/run/secrets/node_secret', 'utf8');
+const secretData = fs.readFileSync('/var/secrets/secrets.json', 'utf8');
+
 const secrets = JSON.parse(secretData);
 
 app.get('/', (req, res) => {
