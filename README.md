@@ -12,10 +12,10 @@
 ## 시스템 구성도
 ![image](https://github.com/KIMHYUNSOO1999/Virtual_Server/assets/93048764/6785b9f6-992f-4ef4-90f2-9e2232b17bc3)
 
-● OS :Ubuntu 20.04, Ubuntu 22.04</p></p>
+● OS : Ubuntu 22.04</p></p>
 ● Web Server : Nginx</p></p>
 ● Web Application Server : Node.js</p></p>
-● Database : MySQL</p>
+● Database : MariaDB</p>
 ● Infra : Docker, Docker-Compose, Minikube</p></p>
 
 ## 결과 
